@@ -721,7 +721,6 @@ def generate_brachy_rp_file(RP_OperatorsName, dicom_dict, out_rp_filepath, is_en
 
     # Step 4.2 Delete the point in the rp lines that z < z_target
     z_target = get_HR_CTV_min_z(dicom_dict['pathinfo']['rs_filepath']) - 20
-    print('ErrorDebug')
     print(tandem_rp_line)
     tandem_rp_line = [pt for pt in tandem_rp_line if (pt[2] > z_target)]
     print(tandem_rp_line)
@@ -992,7 +991,7 @@ def generate_rp_by_ct_rs_folder(input_ct_rs_folder, output_rp_filepath):
 if __name__ == '__main__':
     #main()
     generate_rp_by_ct_rs_folder(
-        input_ct_rs_folder = r"Study-RAL-20191105\33231942",
+        input_ct_rs_folder = r"RAL_plan_new_20190905\29059811-1",
         output_rp_filepath = r"RP.output.dcm")
 
 
