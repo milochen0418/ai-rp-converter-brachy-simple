@@ -24,7 +24,6 @@ from utilities import enablePrint
 
 # FUNCTIONS - Horizontal Algorithm for each CT slice. Use OpenCV to make contours
 def get_dicom_dict(folder):
-
     """
 
     :param folder:
@@ -979,8 +978,22 @@ def main():
                             rp_output_folder_filepath='Study-RAL-20191105_RP_Files',
                             bytes_dump_folder_filepath='Study-RAL-20191105_Bytes_Files',
                             is_recreate_bytes=True, debug_folders=[])
+
+def generate_rp_by_ct_rs_folder(input_ct_rs_folder, output_rp_filepath):
+    from utilities import generate_metadata_to_dicom_dict
+    folder = input_ct_rs_folder
+    dicom_dict = get_dicom_dict(folder)
+    generate_metadata_to_dicom_dict(dicom_dict)
+    generate_output_to_dicom_dict(dicom_dict)
+    generate_brachy_rp_file(RP_OperatorsName='cylin',
+                            dicom_dict=dicom_dict,
+                            out_rp_filepath=output_rp_filepath,
+                            is_enable_print=False)
 if __name__ == '__main__':
-    main()
+    #main()
+    generate_rp_by_ct_rs_folder(
+        input_ct_rs_folder = r"Study-RAL-20191105\33231942",
+        output_rp_filepath = r"RP.output.dcm")
 
 
 
